@@ -1,0 +1,26 @@
+<form action="<%= action == :new ? albums_url : album_url(album) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+  <label>
+    Band:
+    <select name="album[band_id]">
+      <option disabled <%= "selected" if album.band_id.nil? %> ></option>
+      <% bands.each do |band| %>
+        <option value="<%= band.id.to_i %>" <%= "selected" if band.id == album.band_id %> ><%= band.name %></option>
+      <% end %>
+    </select>
+  </label>
+  <label>
+    Album title:
+    <input type="text" name="album[title]" value=" <%=album.title %>">
+  </label>
+  <label>
+    Album type:
+    Live<input type="radio" name="album[album_type]" value="live" <%= "checked" if album.album_type == "live" %> >
+    Studio<input type="radio" name="album[album_type]" value="studio" <%= "checked" if album.album_type == "studio" %> >
+  </label>
+  <input type="submit" value="Submit">
+
+</form>

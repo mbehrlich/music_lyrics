@@ -8,6 +8,27 @@
 </head>
 <body>
 
+  <header>
+    <% if current_user %>
+      <h1> <%= current_user.email %> </h1>
+      <%= button_to "logout", session_url(current_user), method: "delete" %>
+    <% else %>
+      <%= button_to "Sign up", new_user_url, method: "get" %>
+      <%= button_to "login", new_session_url, method: "get" %>
+    <% end %>
+
+  </header>
+
+  <div id="errors">
+    <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li> <%= error %> </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
 <%= yield %>
 
 </body>

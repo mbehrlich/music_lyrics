@@ -1,0 +1,13 @@
+<form action="<%= action == :new ? bands_url : band_url(band) %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+  <label>
+    Band name:
+    <input type="text" name="band[name]" value=" <%=band.name %>">
+
+  </label>
+  <input type="submit" value="Submit">
+
+</form>
