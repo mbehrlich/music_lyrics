@@ -3,7 +3,7 @@
 <h5> <%= @track.title %> </h5>
 
 <p>
-  <%= @track.lyrics %>
+  <%= ugly_lyrics(@track.lyrics) %>
 </p>
 
 <%= render @track.notes %>

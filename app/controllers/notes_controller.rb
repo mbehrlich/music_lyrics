@@ -16,8 +16,10 @@ class NotesController < ApplicationController
 
   def destroy
     @note = Note.find_by(id: params[:id])
-    if @note.nil? || current_user.id != @note.user_id
+    if @note.nil?
       redirect_to :root
+    elsif current_user.id != @note.user_id
+      render text: "403 Forbidden!"
     else
       track = @note.track_id
       @note.destroy
